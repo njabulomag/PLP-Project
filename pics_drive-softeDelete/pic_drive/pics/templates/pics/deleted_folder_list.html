@@ -1,0 +1,49 @@
+{% extends "pics/base.html" %} {% block content %}
+
+<section class="mt-5">
+  <div class="container-lg">
+    <div class="row">
+      <div class="col-md-6">
+        <a class="text-decoration-none text-dark" href="{% url 'pics-home' %}">
+          <i class="bi bi-arrow-left h1"></i
+        ></a>
+        <div class="d-flex flex-row flex-wrap">
+          {% for category in categories %}
+          <div class="mt-4 me-4">
+            <a
+              class="text-decoration-none text-dark"
+              href="{% url 'bin-category' category.name %}"
+            >
+              <i class="fas fa-folder fa-7x"></i>
+              <span class="text-center d-block">{{category.name}}</span>
+            </a>
+          </div>
+          {% empty %} {% endfor %}
+        </div>
+      </div>
+      <!--  -->
+      <div class="col-md-4">
+        <div class="d-flex flex-row">
+          {% for picture in deleted_pictures %}
+          <div class="mt-4 me-4">
+            <a
+              class="text-decoration-none text-dark"
+              href="{% url 'bin-detail' picture.id %}"
+            >
+              <img
+                class="image-fluid rounded"
+                src="{{picture.image.url}}"
+                alt="{{ picture.owner.username }}"
+              />
+            </a>
+          </div>
+          {% empty %}
+          <h1>Picture Bin Empty</h1>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock content %}

@@ -1,0 +1,37 @@
+{% extends "pics/base.html" %} {% load crispy_forms_tags %} {% block content %}
+
+<section class="mt-5">
+  <div class="container-lg">
+    <div class="row">
+      <div class="col-md-8">
+        <a class="text-decoration-none text-dark" href="{% url 'pics-home' %}">
+          <i class="bi bi-arrow-left h1"></i
+        ></a>
+        <div class="d-flex flex-row flex-wrap">
+          <div class="content-section">
+            <form method="POST">
+              {% csrf_token %}
+              <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Delete Folder</legend>
+                <h2>
+                  Are you sure you want to delete the Picture
+                  <span class="bg-info">{{ picture.image.name }}</span> ?
+                </h2>
+              </fieldset>
+              <div class="form-group">
+                <button class="btn btn-danger" type="submit">
+                  Yes, Delete
+                </button>
+                <a class="btn btn-dark" href="{% url 'pics-home'  %}">Cancel</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!--  -->
+      <div class="col-md-4"></div>
+    </div>
+  </div>
+</section>
+
+{% endblock content %}
